@@ -1,50 +1,49 @@
-# Natural Language Toolkit (NLTK)
+# 自然语言工具集 (NLTK)
 [![PyPI](https://img.shields.io/pypi/v/nltk.svg)](https://pypi.python.org/pypi/nltk) 
 [![Travis](https://travis-ci.org/nltk/nltk.svg?branch=develop)](https://travis-ci.org/nltk/nltk)
 
-NLTK -- the Natural Language Toolkit -- is a suite of open source Python
-modules, data sets, and tutorials supporting research and development in Natural
-Language Processing.
+NLTK -- 自然语言工具集 -- 是一个开源 Python 模块、
+数据集、和教程组合的套件，支持着自然语言处理领域的研究和开发。
 
-For documentation, please visit [nltk.org](http://www.nltk.org/).
+关于文档，请访问 [nltk.org](http://www.nltk.org/)
 
 
-## Contributing
+## 贡献
 
-Do you want to contribute to NLTK development? Great! Please read more details
-at [CONTRIBUTING.md](CONTRIBUTING.md).
+你想为 NLTK 开发做贡献吗？那是很棒的一件事！请阅读
+ [CONTRIBUTING.md](CONTRIBUTING.md) 了解更多细节。
 
 See also [How to contribute to NLTK](http://www.nltk.org/contribute.html).
 
 
-## Donate
+## 捐助
 
-Have you found the toolkit helpful?  Please support NLTK development by donating
-to the project via PayPal, using the link on the NLTK homepage.
+你发现本工具集有帮助吗？请支持 NLTK 的开发，通过 PayPal 对项目进行捐款，
+链接在 NLTK 的主页上。
 
 
-## Citing
+## 引用
 
-If you publish work that uses NLTK, please cite the NLTK book, as follows:
+如果你发布使用 NLTK 方面的内容，请引用 NLTK 图书，引用内容如下:
 
     Bird, Steven, Edward Loper and Ewan Klein (2009).
     Natural Language Processing with Python.  O'Reilly Media Inc.
 
 
-## Copyright
+## 版权
 
 Copyright (C) 2001-2019 NLTK Project
 
-For license information, see [LICENSE.txt](LICENSE.txt).
+关于协议信息，阅读 [LICENSE.txt](LICENSE.txt)
 
-[AUTHORS.md](AUTHORS.md) have a list of everyone contributed to NLTK.
+[AUTHORS.md](AUTHORS.md) 含有每个为 NLTK 做出贡献的人员名单。
 
 
-### Redistributing
+### 重新分发
 
-- NLTK source code is distributed under the Apache 2.0 License.
-- NLTK documentation is distributed under the Creative Commons
-  Attribution-Noncommercial-No Derivative Works 3.0 United States license.
-- NLTK corpora are provided under the terms given in the README file for each
-  corpus; all are redistributable and available for non-commercial use.
-- NLTK may be freely redistributed, subject to the provisions of these licenses.
+- NLTK 源代码的分发受到 Apache 2.0 协议的法律保护。
+- NLTK 文档的分发受到 Creative Commons
+  Attribution-Noncommercial-No Derivative Works 3.0 United States 协议的法律保护。
+- NLTK 文集都提供在 README 文件中的术语里，每个文件都有描述；
+  所有文集的分发和使用都是针对非商业目的使用。
+- NLTK 也许是自由分发的，但要主动把这些协议作为前提声明。
