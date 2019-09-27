@@ -1,13 +1,13 @@
-# Natural Language Toolkit (NLTK) Authors
+# 自然语言工具集 (NLTK) 作者名录
 
-## Original Authors
+## 原作者
 
 - Steven Bird <stevenbird1@gmail.com>
 - Edward Loper <edloper@gmail.com>
 - Ewan Klein <ewan@inf.ed.ac.uk>
 
 
-## Contributors
+## 贡献者
 
 - Rami Al-Rfou'
 - Mark Amery
@@ -258,19 +258,20 @@
 - Nicolas Darr <https://github.com/ndarr>
 
 
-## Others whose work we've taken and included in NLTK, but who didn't directly contribute it:
-### Contributors to the Porter Stemmer
+## 没有直接贡献的所收录的其他 NLTK 工作人员：
+### 为**波特词干**做出贡献的人
 - Martin Porter
 - Vivake Gupta
 - Barry Wilkins
 - Hiranmay Ghosh
 - Chris Emerson
 
-### Contributors to Lancaster Stemmer
+### 为**兰卡斯特词干**做出贡献的人
 - Matt Chaput, [Whoosh](https://bitbucket.org/mchaput/whoosh/wiki/Home)
-    - Strip prefix
-    - Custom rule.
-### Authors of snowball arabic stemmer algorithm
+    - 分解前缀
+    - 自定义规则
+
+### **雪球**阿拉伯语词干算法的作者
 - Assem Chelli
 - Abdelkrim Aries
 - Lakhdar Benzahia
