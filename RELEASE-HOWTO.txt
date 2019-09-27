@@ -1,84 +1,84 @@
-Building an NLTK distribution
+建立一个 NLTK 分发版
 ----------------------------------
 
-1. Testing
-   - Ensure CI server isn't reporting any test failures
+1. 测试
+   - 确保 CI 服务器不要报告任何一项测试失败：
      https://www.travis-ci.org/nltk/nltk
-   - Optionally test demonstration code locally
+   - 有选择地在本地测试示范代码：
      make demotest
-   - Optionally test individual modules:
+   - 有选择地测试独立模块：
      tox-3.7 -e py37 nltk.package.module
-   - Check the data index is up-to-date:
+   - 检查数据索引是最新状态：
      cd ../nltk_data; make; push
 
-2. Update Version Number and ChangeLog
-   - Update version number
-     edit nltk/VERSION and web/conf.py (version and release)
-   - Add a new entry to the news page in nltk/web/news.rst
-   - Update the ChangeLog (for nltk, nltk_data)
+2. 更新版本号和变更日志
+   - 更新版本号：
+     编辑 nltk/VERSION 和 web/conf.py 两个文件(前者是版本号所在的文件，后者是发布版本号所在的文件)
+   - 增加一条新内容到新闻页面文件 nltk/web/news.rst 中
+   - 更新变更日志 (针对 nltk 和 nltk_data)
      git log --since=20XX-YY-ZZ
-     edit ChangeLog
+     编辑 ChangeLog 文件
 
-3. Build Documentation
-   - Check the copyright year is correct and update if necessary
-     e.g. ./tools/global_replace.py 2001-2018 2001-2019
-   - Check that installation instructions are up-to-date
-     (including the range of Python versions that are supported)
-     edit web/install.rst setup.py
-   - Rebuild the API docs
-     - make sure you have the current revision of the web pages
+3. 建立文档
+   - 检查版权年份已经更新到当前年份
+     例如在 ./tools/global_replace.py 文件中把 2001-2018 更新为 2001-2019
+   - 检查安装指令都已经更新了
+     (包括所支持的 Python 版本范围)
+     编辑 web/install.rst 和 setup.py 这两个文件。
+   - 重新建立 API 文档
+     - 确保有了网页当前修改过的版本
        cd nltk.github.com; git pull
-     - build
+     - 建立命令
        cd ../nltk/web
-       make (slow; lots of warning messages about cross references)
-     - publish
+       make (这里的工作会慢一些，别忽略大量警告消息)
+     - 发布命令
        cd ../../nltk.github.com
        git add _modules _sources _static api *.html objects.inv searchindex.js
-       git status (missing any important looking files?)
+       git status (确认是否遗漏任何重要的文件？)
        git commit -m "updates for version 3.X.Y"
        git push origin master
 
-4. Create a new version
-   - (Optionally do this in a release branch, branching from develop branch
+4. 建立一个新版本
+   - (在一个发布分支中有选择地做这件事，在开发分支上再建立一个分支
      git checkout -b release-3.X.Y develop)
-   - Tag this version:
+   - 标记这个版本：
      git tag -a 3.X.Y -m "version 3.X.Y"
      git push --tags
-     verify that it shows up here: https://github.com/nltk/nltk/releases
-   - (Optionally merge with master branch
+     确认是否建立成功的网址形式是： https://github.com/nltk/nltk/releases
+   - (有选择地合并主干与分支
      git checkout master
      git merge --no-ff release-3.X.Y)
 
-5. Release
-   - Make the distributions
+5. 发布
+   - 建立分发包
      make clean; make dist; ls dist/
-   - Upload the distributions
+   - 上传分发包
      python -m twine upload dist/*
-   - Check upload
+   - 检查上传是否成功
      https://pypi.python.org/pypi/nltk
 
-6. Announce
-   - Post announcement to NLTK the mailing lists:
-     nltk-dev (for beta releases)
-     nltk-users (for final releases)
+6. 宣布
+   - 把一个声明发给 NLTK 邮件列表：
+     nltk-dev (是接收 beta 版本)
+     nltk-users (是接收最终版本)
      nltk twitter account
-   - announce to external mailing lists, for major N.N releases only
+   - 声明给外部的邮件列表，只接收主版本号 N.N 形式的发布版本
      CORPORA@uib.no, linguist@linguistlist.org,
      PythonSIL@lists.sil.org, edu-sig@python.org
-     mailing lists for any local courses using NLTK
+     邮件列表也接收使用 NLTK 开展的任何一个本地化课程通告。
 
-7. Optionally update to new version
-   - we don't want builds from the repository to have the same release number
-     e.g. after release X.Y.4, update repository version to X.Y.5a (alpha)
+7. 有选择地更新到新版本
+   - 我们不要从仓库来建立具有相同版本号的发布版本。
+     例如，发布版本号 X.Y.4 之后的版本号应该更新到仓库版本 X.Y.5a (初版)
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@@ BOOK BUILD
+@@@ 图书建立
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-The build requires docutils, pdflatex, python imaging library, epydoc,
-  cdrtools, ImageMagick
+建立图书需要 docutils, pdflatex, python imaging library, epydoc,
+  cdrtools, ImageMagick 这些 Python 库。
 
-  1. Check out a clean copy of the subversion repository (or make clean)
-     and install locally with sudo python setup.py install; make clean
-  2. make doc (slow; see doc/ for the results) and commit
+  1. 检查子版本仓库的清理副本工作 (或做一次清理副本操作)，
+     然后使用 sudo python setup.py install; make clean 来进行本地安装。
+  2. 建立图书文档 make doc (这里的工作要慢一些；在 doc/ 目录中查看结果) 后提交。
