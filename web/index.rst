@@ -1,32 +1,28 @@
-Natural Language Toolkit
+自然语言工具集
 ========================
 
-NLTK is a leading platform for building Python programs to work with human language data.
-It provides easy-to-use interfaces to `over 50 corpora and lexical
-resources <http://nltk.org/nltk_data/>`_ such as WordNet,
-along with a suite of text processing libraries for classification, tokenization, stemming, tagging, parsing, and semantic reasoning,
-wrappers for industrial-strength NLP libraries,
-and an active `discussion forum <http://groups.google.com/group/nltk-users>`_.
+NLTK 是使用人类语言数据建立 Python 程序的领头羊。
+工具集提供了简单实用的接口， `超过 50 个文集和词汇资源 <http://nltk.org/nltk_data/>`_ 例如词网，
+还提供了文字处理库套装，针对分类、令牌、词干、标签、语法分析，以及语义根源处理，
+甚至工业级 NLP 库的打包器和一个活跃的 `讨论组 <http://groups.google.com/group/nltk-users>`_ 。
 
-Thanks to a hands-on guide introducing programming fundamentals alongside topics in computational linguistics, plus comprehensive API documentation,
-NLTK is suitable for linguists, engineers, students, educators, researchers, and industry users alike.
-NLTK is available for Windows, Mac OS X, and Linux. Best of all, NLTK is a free, open source, community-driven project.
+感谢介绍编程基础的指导手册，还有在计算机语言学上的众多话题，另外感谢理解性的 API 文档内容。
+NLTK 受众群广泛，适合语言学家、工程师、学生、教育工作者、研究员和工业用户们的青睐。
+NLTK 可以用在三大操作系统上，分别是 Windows 系统、Mac OS X 系统、Linux 系统。最棒的就是 NLTK 是免费的、开源的、社区带动的项目。
 
-NLTK has been called "a wonderful tool for teaching, and working in, computational linguistics using Python,"
-and "an amazing library to play with natural language."
+NLTK 曾被美誉为 “使用 Python 把教学与工作结合在计算机语言学领域的美妙工具。” 以及
+“与自然语言一起玩耍的梦幻库。”
 
-`Natural Language Processing with Python <http://nltk.org/book>`_ provides a practical
-introduction to programming for language processing.
-Written by the creators of NLTK, it guides the reader through the fundamentals
-of writing Python programs, working with corpora, categorizing text, analyzing linguistic structure,
-and more.
-The online version of the book has been been updated for Python 3 and NLTK 3.
-(The original Python 2 version is still available at `http://nltk.org/book_1ed <http://nltk.org/book_1ed>`_.)
+`用 Python 自然语言处理 <http://nltk.org/book>`_ 一书提供了实际的编程语言处理介绍。
+作者就是 NLTK 的建造者们，本书指导了读者，涉及内容有：书写 Python 程序的基础知识、
+与文集一起工作、分类文字、分析语言结构，等等众多内容。
+本书的在线版本已经更新成 Python 3 和 NLTK 3 系列。
+(原来的 Python 2 版本依然可以在如下网站找到 `http://nltk.org/book_1ed <http://nltk.org/book_1ed>`_)
 
-Some simple things you can do with NLTK
+与 NLTK 一起做些简单的事情
 ---------------------------------------
 
-Tokenize and tag some text:
+令牌和标签一些文字：
 
     >>> import nltk
     >>> sentence = """At eight o'clock on Thursday morning
@@ -40,7 +36,7 @@ Tokenize and tag some text:
     [('At', 'IN'), ('eight', 'CD'), ("o'clock", 'JJ'), ('on', 'IN'),
     ('Thursday', 'NNP'), ('morning', 'NN')]
 
-Identify named entities:
+识别署名实体：
 
     >>> entities = nltk.chunk.ne_chunk(tagged)
     >>> entities
@@ -50,7 +46,7 @@ Identify named entities:
                ('did', 'VBD'), ("n't", 'RB'), ('feel', 'VB'),
                ('very', 'RB'), ('good', 'JJ'), ('.', '.')])
 
-Display a parse tree:
+显示一颗语法树：
 
     >>> from nltk.corpus import treebank
     >>> t = treebank.parsed_sents('wsj_0001.mrg')[0]
@@ -58,19 +54,18 @@ Display a parse tree:
 
 .. image:: images/tree.gif
 
-NB. If you publish work that uses NLTK, please cite the NLTK book as
-follows:
+如果你要使用 NLTK 做出版工作，请引用如下 NLTK 图书的如下内容：
 
 	Bird, Steven, Edward Loper and Ewan Klein (2009), *Natural Language Processing with Python*.  O'Reilly Media Inc.
 
-Next Steps
-----------
+接下来做什么？
+---------------
 
-* `sign up for release announcements <http://groups.google.com/group/nltk>`_
-* `join in the discussion <http://groups.google.com/group/nltk-users>`_
+* `注册发布通告群 <http://groups.google.com/group/nltk>`_
+* `加入讨论 <http://groups.google.com/group/nltk-users>`_
 
-Contents
-========
+文档内容
+===========
 
 
 .. toctree::
