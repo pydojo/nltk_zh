@@ -1,6 +1,6 @@
 # 对 NLTK 做出的贡献
 
-大家好！感谢为 [NLTK](http://www.nltk.org/) 做贡献有兴趣。
+大家好！感谢对 [NLTK](http://www.nltk.org/) 做贡献感兴趣的人们。
 :-) 你会加入到一个 [贡献者长名单](https://github.com/nltk/nltk/blob/develop/AUTHORS.md)。
 在本篇文档中，我们会尽力总结你需要知道的每一件事，这样就能做好工作。
 
@@ -28,10 +28,9 @@ NLTK 功能的组成是由 Python/NLP 社区推动贡献着的。
 
 ### Git
 
-我们使用 [Git](http://git-scm.com/) 作为 [版本控制系统](http://en.wikipedia.org/wiki/Revision_control) ，所以贡献的
-最好方式就是学习如何使用 Git 以及把你的变更放到一个 Git 仓库中。
-这里有大量关于 Git 的文档 -- 你可以从这里开始 [专家级 Git 
-工具书](http://git-scm.com/book/)
+我们使用 [Git](http://git-scm.com/) 作为 [版本控制系统](http://en.wikipedia.org/wiki/Revision_control) ，所以贡献的最好方式就是学习如何使用 Git 以及把你的变更放到一个 Git 仓库中。
+这里有大量关于 Git 的文档 -- 你可以从 [专家级 Git 
+工具书](http://git-scm.com/book/) 这里开始。
 
 
 ### 搭建一个开发环境
@@ -75,14 +74,13 @@ NLTK 功能的组成是由 Python/NLP 社区推动贡献着的。
 
 ### 提示
 
-- 写一些 [有帮助的提交
-  消息](http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message)
+- 写一些 [有帮助的提交消息](http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message)
 - 任何位于 `develop` 开发分支的内容都应该是具有可开发性的 (不要有测试失败情况)。
 - 永远不要使用 `git add .` 命令：这会把不期望的文件也加入其中；
 - 避免使用 `git commit -a` 命令，除非你知道你正在干什么；
 - 检查每一个变更，使用 `git diff` 命令，没有问题再加入到索引中 (平台
   区域) 接着使用 `git diff --cached` 命令后再做提交；
-- 确保把你的名字增加到我们的[贡献者名单](https://github.com/nltk/nltk/blob/develop/AUTHORS.md)中；
+- 确保把你的名字增加到我们的 [贡献者名单](https://github.com/nltk/nltk/blob/develop/AUTHORS.md) 中；
 - 如果你推送主仓库的访问，请不要直接提交到
    `develop` 开发仓库：你的访问应该只用来接收拉取请求；如果你想要增加一个新特性的话，
   你应该使用与其他开发者们使用的相同步骤，这样你的代码才会被审阅。
@@ -94,12 +92,10 @@ NLTK 功能的组成是由 Python/NLP 社区推动贡献着的。
 
 - 使用 [PEP8](http://www.python.org/dev/peps/pep-0008/)；
 - 为你增加的新特性写测试 (请阅读下面 "测试" 话题部分)；
-- 一直要记住 [注释过的代码是
-  死代码](http://www.codinghorror.com/blog/2008/07/coding-without-comments.html);
+- 一直要记住 [注释过的代码是死代码](http://www.codinghorror.com/blog/2008/07/coding-without-comments.html)；
 - 命名识别符 (变量名、类名、函数名、模块名) 使用适合人类阅读
   的名字 (`x` 就不适合人类阅读)；
-- 当操作字符串时，使用 [Python 的新风格
-  格式化](http://docs.python.org/library/string.html#format-string-syntax)
+- 当操作字符串时，使用 [Python 的新风格格式化](http://docs.python.org/library/string.html#format-string-syntax)
   (使用 `'{} = {}'.format(a, b)` 而不要使用 `'%s = %s' % (a, b)` 这种 Python 2 的风格);
 - 所有 `#TODO` 注释都会转入到问题里去 (使用我们的
   [GitHub 问题系统](https://github.com/nltk/nltk/issues))；
@@ -158,7 +154,7 @@ NLTK 现在使用 [Travis](https://travis-ci.org/nltk/nltk/) 做持续集成。
 #### 在本地使用 `tox` 做测试
 
 第一步就是搭建一个新的虚拟环境，阅读 https://docs.python-guide.org/dev/virtualenvs/
-然后运行 `tox -e py37` 命令。
+ 后运行 `tox -e py37` 命令。
 
 例如，使用 `pipenv` 时：
 
