@@ -5,15 +5,15 @@
 NLTK -- 自然语言工具集 -- 是一个开源 Python 模块、
 数据集、和教程组合的套件，支持着自然语言处理领域的研究和开发。
 
-关于文档，请访问 [nltk.org](http://www.nltk.org/)
+关于文档，请访问官网 [nltk.org](http://www.nltk.org/)
 
 
 ## 贡献
 
 你想为 NLTK 开发做贡献吗？那是很棒的一件事！请阅读
- [CONTRIBUTING.md](CONTRIBUTING.md) 了解更多细节。
+ [贡献指导](CONTRIBUTING.md) 了解更多细节。
 
-See also [How to contribute to NLTK](http://www.nltk.org/contribute.html).
+也要阅读 [如何给 NLTK 做贡献](http://www.nltk.org/contribute.html)。
 
 
 ## 捐助
@@ -34,9 +34,9 @@ See also [How to contribute to NLTK](http://www.nltk.org/contribute.html).
 
 Copyright (C) 2001-2019 NLTK Project
 
-关于协议信息，阅读 [LICENSE.txt](LICENSE.txt)
+关于协议信息，阅读 [协议](LICENSE.txt)
 
-[AUTHORS.md](AUTHORS.md) 含有每个为 NLTK 做出贡献的人员名单。
+[作者名录](AUTHORS.md) 含有每个为 NLTK 做出贡献的人员名单。
 
 
 ### 重新分发
