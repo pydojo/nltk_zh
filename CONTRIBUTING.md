@@ -1,7 +1,7 @@
 # 对 NLTK 做出的贡献
 
 大家好！感谢对 [NLTK](http://www.nltk.org/) 做贡献感兴趣的人们。
-:-) 你会加入到一个 [贡献者长名单](https://github.com/nltk/nltk/blob/develop/AUTHORS.md)。
+:-) 你会加入到一个 [贡献者长名单](https://github.com/nltk/nltk/blob/develop/AUTHORS.md) 里。
 在本篇文档中，我们会尽力总结你需要知道的每一件事，这样就能做好工作。
 
 
@@ -74,7 +74,7 @@ NLTK 功能的组成是由 Python/NLP 社区推动贡献着的。
 
 ### 提示
 
-- 写一些 [有帮助的提交消息](http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message)
+- 写一些 [有帮助的提交消息](http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message)。
 - 任何位于 `develop` 开发分支的内容都应该是具有可开发性的 (不要有测试失败情况)。
 - 永远不要使用 `git add .` 命令：这会把不期望的文件也加入其中；
 - 避免使用 `git commit -a` 命令，除非你知道你正在干什么；
@@ -84,7 +84,7 @@ NLTK 功能的组成是由 Python/NLP 社区推动贡献着的。
 - 如果你推送主仓库的访问，请不要直接提交到
    `develop` 开发仓库：你的访问应该只用来接收拉取请求；如果你想要增加一个新特性的话，
   你应该使用与其他开发者们使用的相同步骤，这样你的代码才会被审阅。
-- 阅读 [RELEASE-HOWTO.txt](RELEASE-HOWTO.txt) 内容来查看你需要知道的每一件事，
+- 阅读 [如何发布文档](RELEASE-HOWTO.txt) 内容来查看你需要知道的每一件事，
   否则就不要建立一个新的 NLTK 发布版本。
 
 
@@ -103,7 +103,7 @@ NLTK 功能的组成是由 Python/NLP 社区推动贡献着的。
 - 尽量写兼容 Python 2 的代码，最好是适合 Python3 的代码，因为对于我们来说
   支持这两个系列版本就不会那么痛苦了。
 
-也要阅读我们的 [开发者指导](https://github.com/nltk/nltk/wiki/Developers-Guide)
+也要阅读我们的 [开发者指导](https://github.com/nltk/nltk/wiki/Developers-Guide) 内容。
 
 
 ## 测试
