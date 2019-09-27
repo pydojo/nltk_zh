@@ -1,14 +1,14 @@
 # 对 NLTK 做出的贡献
 
 大家好！感谢为 [NLTK](http://www.nltk.org/) 做贡献有兴趣。
-:-) 你会加入到一个贡献者长名单中 [long list of contributors](https://github.com/nltk/nltk/blob/develop/AUTHORS.md)。
-在本篇文档中，我们会尽力总结你需要指导的每一件事，这样就能做好工作。
+:-) 你会加入到一个 [贡献者长名单](https://github.com/nltk/nltk/blob/develop/AUTHORS.md)。
+在本篇文档中，我们会尽力总结你需要知道的每一件事，这样就能做好工作。
 
 
 ## 代码与问题
 
 我们使用 [GitHub](https://www.github.com/) 来服务我们的代码仓库和问题。
-其中 [NLTK organization on GitHub](https://github.com/nltk) 有许多仓库，
+其中 [ GitHub 上的 NLTK 组织](https://github.com/nltk) 有许多仓库，
 所以我们可以更好地管理问题和开发。最重要的事情是:
 
 - [nltk/nltk](https://github.com/nltk/nltk/) 与安装库相关的代码主仓库；
@@ -22,7 +22,7 @@
 ## 开发优先级
 
 NLTK 功能的组成是由 Python/NLP 社区推动贡献着的。
-优先开发的领域都罗列在 [NLTK Wiki](https://github.com/nltk/nltk/wiki#development)
+优先开发的领域都罗列在 [NLTK Wiki](https://github.com/nltk/nltk/wiki#development) 上。
 
 ## Git 与我们的分支模式
 
@@ -36,7 +36,7 @@ NLTK 功能的组成是由 Python/NLP 社区推动贡献着的。
 
 ### 搭建一个开发环境
 
-为主仓库做贡献要建立你的本地开发环境 [nltk/nltk](https://github.com/nltk/nltk/):
+为主仓库做贡献要建立你的本地开发环境 [nltk/nltk](https://github.com/nltk/nltk/)：
 
 - 用你的 GitHub 账户叉起 [nltk/nltk](https://github.com/nltk/nltk/) 仓库；
 - 把你自己叉起的仓库复制到本地硬盘中
@@ -76,13 +76,13 @@ NLTK 功能的组成是由 Python/NLP 社区推动贡献着的。
 ### 提示
 
 - 写一些 [有帮助的提交
-  消息](http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message).
+  消息](http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message)
 - 任何位于 `develop` 开发分支的内容都应该是具有可开发性的 (不要有测试失败情况)。
 - 永远不要使用 `git add .` 命令：这会把不期望的文件也加入其中；
 - 避免使用 `git commit -a` 命令，除非你知道你正在干什么；
 - 检查每一个变更，使用 `git diff` 命令，没有问题再加入到索引中 (平台
   区域) 接着使用 `git diff --cached` 命令后再做提交；
-- 确保把你的名字增加到我们的 [贡献者名单](https://github.com/nltk/nltk/blob/develop/AUTHORS.md)；
+- 确保把你的名字增加到我们的[贡献者名单](https://github.com/nltk/nltk/blob/develop/AUTHORS.md)中；
 - 如果你推送主仓库的访问，请不要直接提交到
    `develop` 开发仓库：你的访问应该只用来接收拉取请求；如果你想要增加一个新特性的话，
   你应该使用与其他开发者们使用的相同步骤，这样你的代码才会被审阅。
@@ -100,16 +100,14 @@ NLTK 功能的组成是由 Python/NLP 社区推动贡献着的。
   的名字 (`x` 就不适合人类阅读)；
 - 当操作字符串时，使用 [Python 的新风格
   格式化](http://docs.python.org/library/string.html#format-string-syntax)
-  (使用 `'{} = {}'.format(a, b)` 而不要使用 `'%s = %s' % (a, b)` 这种2的风格);
+  (使用 `'{} = {}'.format(a, b)` 而不要使用 `'%s = %s' % (a, b)` 这种 Python 2 的风格);
 - 所有 `#TODO` 注释都会转入到问题里去 (使用我们的
   [GitHub 问题系统](https://github.com/nltk/nltk/issues))；
-- 运行所有测试后再执行推送 (只可以执行 `tox`) 因为如果你的代码变更导致
-  断裂问题，你会知道的；
+- 运行所有测试后再执行推送 (只可以执行 `tox`) 因为如果你的代码变更导致断裂问题，你会知道的；
 - 尽量写兼容 Python 2 的代码，最好是适合 Python3 的代码，因为对于我们来说
   支持这两个系列版本就不会那么痛苦了。
 
-也要阅读我们的 [开发者
-指导](https://github.com/nltk/nltk/wiki/Developers-Guide)
+也要阅读我们的 [开发者指导](https://github.com/nltk/nltk/wiki/Developers-Guide)
 
 
 ## 测试
@@ -122,12 +120,12 @@ NLTK 功能的组成是由 Python/NLP 社区推动贡献着的。
 
 对于你的代码更好的一种设计来说，我们建议使用一项 TDD 技术，名叫
 [测试带动开发](https://en.wikipedia.org/wiki/Test-driven_development)，
-就是你先写测试用例，这样在写生产代码 **之前** 可以实现你所期望的特性。
+就是你先写测试用例，这样在写生产代码**之前**可以实现你所期望的特性。
 
 
 ## 持续集成
 
-**淘汰了的：** NLTK 曾使用 [Cloudbees](https://nltk.ci.cloudbees.com/) 来做持续集成。
+**已淘汰的：** NLTK 曾使用 [Cloudbees](https://nltk.ci.cloudbees.com/) 来做持续集成。
 
 NLTK 现在使用 [Travis](https://travis-ci.org/nltk/nltk/) 做持续集成。
 
@@ -181,8 +179,8 @@ tox -e py37
 - [nltk-users][nltk-users]，为通用讨论和用户问题使用；
 - [nltk-dev][nltk-dev]，为 NLTK 开发感兴趣的人提供使用。
 
-如果你有任何问题或建议，请通过 [nltk-dev][nltk-dev] 开发邮件列表联系我们，
-别受拘束地。每一份贡献都是非常受欢迎的！
+如果你有任何问题或建议，通过 [nltk-dev][nltk-dev] 开发邮件列表联系我们，
+请别受拘束。每一份贡献都是非常受欢迎的！
 
 挥舞你的屠龙刀吧！ :-p 未经 Python3.7 环境测试的部分不进行汉化。
 
