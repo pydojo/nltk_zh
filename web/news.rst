@@ -1,8 +1,8 @@
-NLTK News
-=========
+NLTK 新闻
+==========
 
-2019
-----
+2019 年
+-------
 
 NLTK 3.4.4 release: July 2019
   Fix bug in plot function (probability.py)

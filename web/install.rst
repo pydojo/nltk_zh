@@ -1,50 +1,50 @@
-Installing NLTK
+安装 NLTK
 ===============
 
-NLTK requires Python versions 3.5, 3.6, or 3.7
+NLTK 需要使用 Python 版本有 3.5、 3.6 或 3.7
 
-For Windows users, it is strongly recommended that you go through this guide to install Python 3 successfully https://docs.python-guide.org/starting/install3/win/#install3-windows
+对于 Windows 系统的用户们，强烈推荐本篇指导来安装 Python 3 https://docs.python-guide.org/starting/install3/win/#install3-windows 以便成功。
 
-Setting up a Python Environment (Mac/Unix/Windows)
+搭建一个 Python 虚拟环境 (Mac/Unix/Windows)
 --------
 
-Please go through this guide to learn how to manage your virtual environment managers before you install NLTK,  https://docs.python-guide.org/dev/virtualenvs/
+请通过本篇指导来学习如何管理你的虚拟环境，这是要在你安装 NLTK 之前完成的事情， https://docs.python-guide.org/dev/virtualenvs/
 
-Alternatively, you can use the Anaconda distribution installer that comes "batteries included" https://www.anaconda.com/distribution/ 
+另外，你可以使用 Anaconda 分发版安装器，其中伴随了许多 "已含有的能量库" https://www.anaconda.com/distribution/ 
 
-Mac/Unix
+Mac/Unix 系统
 --------
 
-#. Install NLTK: run ``pip install --user -U nltk``
-#. Install Numpy (optional): run ``pip install --user -U numpy``
-#. Test installation: run ``python`` then type ``import nltk``
+#. 安装 NLTK 的命令是： ``pip install --user -U nltk``
+#. 安装 Numpy (可选) 的命令是： ``pip install --user -U numpy``
+#. 测试安装是否成功的命令是：终端里输入 ``python`` 进入 REPL 后输入 ``import nltk`` 无错误提示即可。
 
-For older versions of Python it might be necessary to install setuptools (see http://pypi.python.org/pypi/setuptools) and to install pip (``sudo easy_install pip``).
+对于老旧的 Python 版本来说，也许要安装 setuptools 库 (阅读 http://pypi.python.org/pypi/setuptools) 和 pip 应用管理器 (``sudo easy_install pip``)。
 
-Windows
+Windows 系统
 -------
 
-These instructions assume that you do not already have Python installed on your machine.
+如下指导是假设你还没有把 Python 安装到你的电脑时的情况。
 
-32-bit binary installation
+32-bit 二进制安装
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Install Python 3.7: http://www.python.org/downloads/ (avoid the 64-bit versions)
-#. Install Numpy (optional): https://www.scipy.org/scipylib/download.html
-#. Install NLTK: http://pypi.python.org/pypi/nltk
-#. Test installation: ``Start>Python37``, then type ``import nltk``
+#. 安装 Python 3.7 的 32位程序： http://www.python.org/downloads/ (不要安装 64-bit 版本)
+#. 安装 Numpy (可选)： https://www.scipy.org/scipylib/download.html
+#. 安装 NLTK： http://pypi.python.org/pypi/nltk
+#. 安装完的测试： ``Start>Python37`` 进入 Python REPL 后输入 ``import nltk``
 
-Installing Third-Party Software
+安装第三方软件
 -------------------------------
 
-Please see: https://github.com/nltk/nltk/wiki/Installing-Third-Party-Software
+请阅读： https://github.com/nltk/nltk/wiki/Installing-Third-Party-Software 文档内容。
 
 
-Installing NLTK Data
+安装 NLTK 数据
 -------------------------------
 
-After installing the NLTK package, please do install the necessary datasets/models for specific functions to work. 
+安装完 NLTK 工具集后，请一定要安装需要的数据集和模型，这样具体的函数才可以有效。
 
-If you're unsure of which datasets/models you'll need, you can install the "popular" subset of NLTK data, on the command line type `python -m nltk.downloader popular`, or in the Python interpreter `import nltk; nltk.download('popular')`
+如果你不知道你要使用哪个数据集和模型，你可以安装 NLTK 数据中“受欢迎”的子集，在命令行里输入 `python -m nltk.downloader popular` 命令，或者在 Python REPL 中输入 `import nltk; nltk.download('popular')` 代码。
 
-For details, see http://www.nltk.org/data.html
+对于数据的详细内容，阅读 http://www.nltk.org/data.html 文档内容。
