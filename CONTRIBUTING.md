@@ -28,11 +28,10 @@ NLTK 功能的组成是由 Python/NLP 社区推动贡献着的。
 
 ### Git
 
-我们使用 [Git](http://git-scm.com/) 作为版本控制系统 [version control
-system](http://en.wikipedia.org/wiki/Revision_control) ，所以贡献的
+我们使用 [Git](http://git-scm.com/) 作为 [版本控制系统](http://en.wikipedia.org/wiki/Revision_control) ，所以贡献的
 最好方式就是学习如何使用 Git 以及把你的变更放到一个 Git 仓库中。
-这里有大量关于 Git 的文档 -- 你可以从这里开始 [Pro Git
-book](http://git-scm.com/book/)
+这里有大量关于 Git 的文档 -- 你可以从这里开始 [专家级 Git 
+工具书](http://git-scm.com/book/)
 
 
 ### 搭建一个开发环境
