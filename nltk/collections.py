@@ -1,6 +1,6 @@
 # Natural Language Toolkit: Collections
 #
-# Copyright (C) 2001-2019 NLTK Project
+# Copyright (C) 2001-2020 NLTK Project
 # Author: Steven Bird <stevenbird1@gmail.com>
 # URL: <http://nltk.org/>
 # For license information, see LICENSE.TXT
@@ -120,46 +120,45 @@ class OrderedDict(dict):
 
 @total_ordering
 class AbstractLazySequence(object):
-    """
-    An abstract base class for read-only sequences whose values are
-    computed as needed.  Lazy sequences act like tuples -- they can be
-    indexed, sliced, and iterated over; but they may not be modified.
+    """一个抽象基类。
+    对于只读序列来说，序列值都要根据需要完成计算。
+    懒惰序列扮演了像元素一样的角色：所以支持索引、
+    切片和迭代操作；但不能被修改。
 
-    The most common application of lazy sequences in NLTK is for
-    corpus view objects, which provide access to the contents of a
-    corpus without loading the entire corpus into memory, by loading
-    pieces of the corpus from disk as needed.
+    在 NLTK 中大部分共同采用了懒惰序列模式。这是
+    针对文集视图对象，因为文集视图对象提供访问一个
+    文集的内容，而不是把整个文集都加载到内存中，而
+    根据需要从硬盘加载文集中的内容。
 
-    The result of modifying a mutable element of a lazy sequence is
-    undefined.  In particular, the modifications made to the element
-    may or may not persist, depending on whether and when the lazy
-    sequence caches that element's value or reconstructs it from
-    scratch.
+    这里没有定义修改一个懒惰序列中的可变元素。在特殊
+    情况中，修改元素也许不无法获得永远存储效果，根据
+    就是何时何地懒惰序列缓存了元素的值，或者从草稿中
+    进行了重建工作。
 
-    Subclasses are required to define two methods: ``__len__()``
-    and ``iterate_from()``.
+    抽象基类的子类要覆写 2 个方法： ``__len__()``
+    和 ``iterate_from()`` 方法。
+
+    常作为建立一个文集视图对象时使用的类的父类。
     """
 
     def __len__(self):
+        """根据这种文集视图返回文集文件中令牌的数量。
+        令牌就是对一段文字进行分词处理。
         """
-        Return the number of tokens in the corpus file underlying this
-        corpus view.
-        """
-        raise NotImplementedError("should be implemented by subclass")
+        raise NotImplementedError("本方法应该覆写在子类中。")
 
     def iterate_from(self, start):
+        """返回一个迭代器对象。
+        迭代器对象根据这个文集视图生成文集文件中的令牌。
+        如果 ``start>=len(self)`` 的话，令牌起始数是
+        ``start`` ，然后这个迭代器对象就不再含有令牌了。
         """
-        Return an iterator that generates the tokens in the corpus
-        file underlying this corpus view, starting at the token number
-        ``start``.  If ``start>=len(self)``, then this iterator will
-        generate no tokens.
-        """
-        raise NotImplementedError("should be implemented by subclass")
+        raise NotImplementedError("本方法应该覆写在子类中。")
 
     def __getitem__(self, i):
-        """
-        Return the *i* th token in the corpus file underlying this
-        corpus view.  Negative indices and spans are both supported.
+        """支持索引操作的协议部署。
+        根据这个文集视图，返回文集文件中第 *i* 个令牌。
+        也支持负数和范围索引操作。
         """
         if isinstance(i, slice):
             start, stop = slice_bounds(self, i)
@@ -177,19 +176,19 @@ class AbstractLazySequence(object):
                 raise IndexError("index out of range")
 
     def __iter__(self):
-        """Return an iterator that generates the tokens in the corpus
-        file underlying this corpus view."""
+        """部署迭代器协议。
+        返回一个迭代对象，该对象根据这个文集视图生成文集文件中的令牌。"""
         return self.iterate_from(0)
 
     def count(self, value):
-        """Return the number of times this list contains ``value``."""
+        """返回包含``value``参数值的次数。"""
         return sum(1 for elt in self if elt == value)
 
     def index(self, value, start=None, stop=None):
-        """Return the index of the first occurrence of ``value`` in this
-        list that is greater than or equal to ``start`` and less than
-        ``stop``.  Negative start and stop values are treated like negative
-        slice bounds -- i.e., they count from the end of the list."""
+        """返回第一次出现的``value``参数值的索引位值。
+        ``value``的值要大于等于``start``的值，并且
+        小于``stop``的值。负数值都处理成倒序切片，就是
+        从后向前数。"""
         start, stop = slice_bounds(self, slice(start, stop))
         for i, elt in enumerate(islice(self, start, stop)):
             if elt == value:
@@ -197,32 +196,32 @@ class AbstractLazySequence(object):
         raise ValueError("index(x): x not in list")
 
     def __contains__(self, value):
-        """Return true if this list contains ``value``."""
+        """如果列表中含有``value``值，就返回``True``"""
         return bool(self.count(value))
 
     def __add__(self, other):
-        """Return a list concatenating self with other."""
+        """返回串联结果，即支持``self + other``操作。"""
         return LazyConcatenation([self, other])
 
     def __radd__(self, other):
-        """Return a list concatenating other with self."""
+        """返回串联结果，支持``other + self``操作。"""
         return LazyConcatenation([other, self])
 
     def __mul__(self, count):
-        """Return a list concatenating self with itself ``count`` times."""
+        """返回串联结果，支持``self * count``操作。"""
         return LazyConcatenation([self] * count)
 
     def __rmul__(self, count):
-        """Return a list concatenating self with itself ``count`` times."""
+        """返回串联结果，支持``count * self``操作。"""
         return LazyConcatenation([self] * count)
 
     _MAX_REPR_SIZE = 60
 
     def __repr__(self):
         """
-        Return a string representation for this corpus view that is
-        similar to a list's representation; but if it would be more
-        than 60 characters long, it is truncated.
+        返回本文集视图的原始字符串形式，
+        类似一种列表形式；但如果内容超过60个字符的话，
+        会用缩短显示内容加上省略号形式表现。
         """
         pieces = []
         length = 5
@@ -246,16 +245,16 @@ class AbstractLazySequence(object):
 
     def __hash__(self):
         """
-        :raise ValueError: Corpus view objects are unhashable.
+        :raise ValueError: 文集视图对象都是非哈希化的。
         """
         raise ValueError("%s objects are unhashable" % self.__class__.__name__)
 
 
 class LazySubsequence(AbstractLazySequence):
-    """
-    A subsequence produced by slicing a lazy sequence.  This slice
-    keeps a reference to its source sequence, and generates its values
-    by looking them up in the source sequence.
+    """一个懒惰序列的实例化子类。
+    通过切片一个懒惰序列产生一个子序列对象。
+    这个类的实例保留了源序列的一个参考对象，
+    并且生成的值是通过查询源序列得来的。
     """
 
     MIN_SIZE = 100
@@ -266,11 +265,22 @@ class LazySubsequence(AbstractLazySequence):
     """
 
     def __new__(cls, source, start, stop):
-        """
-        Construct a new slice from a given underlying sequence.  The
-        ``start`` and ``stop`` indices should be absolute indices --
-        i.e., they should not be negative (for indexing from the back
-        of a list) or greater than the length of ``source``.
+        """指导构造器行为的特殊方法。
+        从给出的序列建立一个新切片。
+        其中 ``start`` 和 ``stop`` 参数是绝对索引位值，
+        例如，不应该是负数（不能从后向前切片），
+        不能大于 ``source`` 值的长度。
+
+        :Example:
+        
+        >>> import nltk
+        >>> from nltk.corpus.reader.util import *
+        >>> f1 = nltk.data.find('corpora/inaugural/README')
+        >>> c1 = StreamBackedCorpusView(f1, read_whitespace_block, encoding='utf-8')
+        >>> ls = nltk.collections.LazySubsequence(c1, 1, 3)
+        >>> ls
+        ['Inaugural', 'Address']
+
         """
         # If the slice is small enough, just use a tuple.
         if stop - start < cls.MIN_SIZE:
@@ -293,12 +303,12 @@ class LazySubsequence(AbstractLazySequence):
 
 
 class LazyConcatenation(AbstractLazySequence):
-    """
-    A lazy sequence formed by concatenating a list of lists.  This
-    underlying list of lists may itself be lazy.  ``LazyConcatenation``
-    maintains an index that it uses to keep track of the relationship
-    between offsets in the concatenated lists and offsets in the
-    sublists.
+    """一个懒惰序列的实例化子类。
+    懒惰序列形式的组成是通过串联一个列表组成的列表。
+    列表的列表也许自身也是懒惰模式。
+    就  ``LazyConcatenation`` 来说是负责维护一个索引，
+    这个索引是用来保存偏移位值之间的关系追踪，
+    二者是串联完的列表中的偏移位值和子列表中的偏移位值之间的关系。
     """
 
     def __init__(self, list_of_lists):
@@ -344,15 +354,14 @@ class LazyConcatenation(AbstractLazySequence):
 
 
 class LazyMap(AbstractLazySequence):
-    """
-    A lazy sequence whose elements are formed by applying a given
-    function to each element in one or more underlying lists.  The
-    function is applied lazily -- i.e., when you read a value from the
-    list, ``LazyMap`` will calculate that value by applying its
-    function to the underlying lists' value(s).  ``LazyMap`` is
-    essentially a lazy version of the Python primitive function
-    ``map``.  In particular, the following two expressions are
-    equivalent:
+    """一个懒惰序列的实例化子类。
+    懒惰序列中的元素形式都是通过应用了一个给出的函数作用到
+    每个元素上或更多列表上形成的。
+    函数是以懒惰方式来被应用，例如，当你从列表读取一个值的时候，
+    那么 ``LazyMap`` 会通过给出的函数作用到提供的列表来计算那个要读取的值。
+    对于 ``LazyMap`` 类来说，是不可缺少的，因为它是 Python 内置函数
+    ``map`` 的懒惰版本。尤其是下面这些表达式都是等价关系（懒惰模式的理解
+    可以说是生成器模式，要想得到结果需要用``list()``内置函数来获得。）：
 
         >>> from nltk.collections import LazyMap
         >>> function = str
@@ -362,30 +371,25 @@ class LazyMap(AbstractLazySequence):
         >>> list(LazyMap(function, sequence))
         ['1', '2', '3']
 
-    Like the Python ``map`` primitive, if the source lists do not have
-    equal size, then the value None will be supplied for the
-    'missing' elements.
+    像 Python ``map`` 内置函数，如果提供的许多列表源不一样长的话，
+    那么就会用 ``None`` 值做补位元素值。
 
-    Lazy maps can be useful for conserving memory, in cases where
-    individual values take up a lot of space.  This is especially true
-    if the underlying list's values are constructed lazily, as is the
-    case with many corpus readers.
+    这个 ``LazyMap` 类对节省内存来说是有用的，
+    否则每个值都会占用大量内存空间。如果原来的列表值都用懒惰模式建立的话，
+    就特别有用，因为会有使用多个文集阅读器来建立多列表参数值的情况。
 
-    A typical example of a use case for this class is performing
-    feature detection on the tokens in a corpus.  Since featuresets
-    are encoded as dictionaries, which can take up a lot of memory,
-    using a ``LazyMap`` can significantly reduce memory usage when
-    training and running classifiers.
+    典型的用例就是在一个文集上对许多令牌执行特性侦测任务。
+    由于众多特性都编码成许多字典数据类型，可能会消耗大量内存，
+    而使用一个 ``LazyMap`` 时可以有效地减少内存用量，尤其是在
+    训练和运行机器学习分类器时。
     """
 
     def __init__(self, function, *lists, **config):
         """
-        :param function: The function that should be applied to
-            elements of ``lists``.  It should take as many arguments
-            as there are ``lists``.
-        :param lists: The underlying lists.
-        :param cache_size: Determines the size of the cache used
-            by this lazy map.  (default=5)
+        :param function: 作用在 ``lists`` 参数中每个元素上的函数。
+            函数应该具备接收多参数的能力，因为 ``lists`` 参数是多参数形式。
+        :param lists: 多参数形式，要被处理的列表。
+        :param cache_size: 确定本类要使用的缓存大小，默认值是5
         """
         if not lists:
             raise TypeError("LazyMap requires at least two args")
@@ -481,16 +485,15 @@ class LazyMap(AbstractLazySequence):
 
 
 class LazyZip(LazyMap):
-    """
-    A lazy sequence whose elements are tuples, each containing the i-th
-    element from each of the argument sequences.  The returned list is
-    truncated in length to the length of the shortest argument sequence. The
-    tuples are constructed lazily -- i.e., when you read a value from the
-    list, ``LazyZip`` will calculate that value by forming a tuple from
-    the i-th element of each of the argument sequences.
+    """一个 ``LazyMap`` 的子类。
+    一个懒惰序列中的元素都是元组形式，
+    把多个列表的对位元素进行配对形成元组组成的列表。
+    （理解压缩概念在此处的应用效果就是元组列表形式。）
+    列表中的元组都是懒惰模式建立的，例如，当你读取列表中的一项值时，
+    那么 ``LazyZip`` 类会通过参数序列值中的对位元素计算那项值。
 
-    ``LazyZip`` is essentially a lazy version of the Python primitive function
-    ``zip``.  In particular, an evaluated LazyZip is equivalent to a zip:
+    对于 ``LazyZip`` 类来说是不可缺少的一种 Python ``zip`` 内置函数
+    的懒惰版本。尤其是下面这些表达式都是等价关系：
 
         >>> from nltk.collections import LazyZip
         >>> sequence1, sequence2 = [1, 2, 3], ['a', 'b', 'c']
@@ -502,20 +505,17 @@ class LazyZip(LazyMap):
         >>> list(zip(*sequences)) == list(LazyZip(*sequences))
         True
 
-    Lazy zips can be useful for conserving memory in cases where the argument
-    sequences are particularly long.
+    当多参数的众多序列值都特别长时，``LazyZip`` 类对于减少内存消耗是有用的。
 
-    A typical example of a use case for this class is combining long sequences
-    of gold standard and predicted values in a classification or tagging task
-    in order to calculate accuracy.  By constructing tuples lazily and
-    avoiding the creation of an additional long sequence, memory usage can be
-    significantly reduced.
+    典型用例是在机器学习分类中把黄金标准的众多长序列与预测值组合时，
+    或者是为了计算准确率使用的标签任务时。通过懒惰模式建立这些元组
+    以及通过避免建立额外的长序列时，内存用量都明显减少。
     """
 
     def __init__(self, *lists):
         """
-        :param lists: the underlying lists
-        :type lists: list(list)
+        :param lists: 多参数形式，被处理的列表。
+        :type lists: 确保能够支持 ``list(list)`` 操作。
         """
         LazyMap.__init__(self, lambda *elts: elts, *lists)
 
@@ -531,17 +531,16 @@ class LazyZip(LazyMap):
 
 
 class LazyEnumerate(LazyZip):
-    """
-    A lazy sequence whose elements are tuples, each ontaining a count (from
-    zero) and a value yielded by underlying sequence.  ``LazyEnumerate`` is
-    useful for obtaining an indexed list. The tuples are constructed lazily
-    -- i.e., when you read a value from the list, ``LazyEnumerate`` will
-    calculate that value by forming a tuple from the count of the i-th
-    element and the i-th element of the underlying sequence.
+    """一个 ``LazyZip`` 的子类。
+    一个懒惰序列中的元素都是元组形式，
+    每个元素都包含一个数算情况（从0开始数）并且
+    由序列产生一个值。
+    对于包含一种含有索引位的列表来说 ``LazyEnumerate`` 类是有用的。
+    其中元组项都是懒惰模式建立的，例如，当你从一个列表读取一个值时，
+    那么 ``LazyEnumerate`` 类会计算那个值所在的索引位形成一个元组。
 
-    ``LazyEnumerate`` is essentially a lazy version of the Python primitive
-    function ``enumerate``.  In particular, the following two expressions are
-    equivalent:
+    ``LazyEnumerate`` 类是不可缺少的 Python 内置函数 ``enumerate`` 的懒惰版本。
+    尤其是下面这些表达式都是等价关系：
 
         >>> from nltk.collections import LazyEnumerate
         >>> sequence = ['first', 'second', 'third']
@@ -550,13 +549,11 @@ class LazyEnumerate(LazyZip):
         >>> list(LazyEnumerate(sequence))
         [(0, 'first'), (1, 'second'), (2, 'third')]
 
-    Lazy enumerations can be useful for conserving memory in cases where the
-    argument sequences are particularly long.
+    ``LazyEnumerate`` 类在参数序列特别长时对节省内存有用。
 
-    A typical example of a use case for this class is obtaining an indexed
-    list for a long sequence of values.  By constructing tuples lazily and
-    avoiding the creation of an additional long sequence, memory usage can be
-    significantly reduced.
+    典型用例是获得一个含有索引位的特别长的列表。
+    通过懒惰模式建立的这些元组项，以及避免建立过长的序列时，
+    内存用量都会足够地减少。
     """
 
     def __init__(self, lst):
@@ -568,10 +565,20 @@ class LazyEnumerate(LazyZip):
 
 
 class LazyIteratorList(AbstractLazySequence):
-    """
-    Wraps an iterator, loading its elements on demand
-    and making them subscriptable.
-    __repr__ displays only the first few elements.
+    """一个懒惰序列的实例化子类。
+    打包了一个迭代器对象，根据需要加载该对象中的元素，
+    并且让这些元素支持索引操作。
+    dunder repr 只显示前几项元素内容。
+
+    注意迭代器对象不能使用负数切片操作。
+
+    :Example:
+    
+    >>> from nltk.collections import LazyIteratorList
+    >>> lil = LazyIteratorList(iter(range(100)))
+    >>> lil[:10]
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
     """
 
     def __init__(self, it, known_len=None):
@@ -580,6 +587,7 @@ class LazyIteratorList(AbstractLazySequence):
         self._cache = []
 
     def __len__(self):
+        """增加支持索引操作。"""
         if self._len:
             return self._len
         for x in self.iterate_from(len(self._cache)):
@@ -588,7 +596,7 @@ class LazyIteratorList(AbstractLazySequence):
         return self._len
 
     def iterate_from(self, start):
-        """Create a new iterator over this list starting at the given offset."""
+        """在提供的列表索引位值上建立一个新的迭代器对象。"""
         while len(self._cache) < start:
             v = next(self._it)
             self._cache.append(v)
@@ -603,11 +611,11 @@ class LazyIteratorList(AbstractLazySequence):
             i += 1
 
     def __add__(self, other):
-        """Return a list concatenating self with other."""
+        """支持``self + other``操作。"""
         return type(self)(chain(self, other))
 
     def __radd__(self, other):
-        """Return a list concatenating other with self."""
+        """支持``other + self``操作。"""
         return type(self)(chain(other, self))
 
 
@@ -615,20 +623,22 @@ class LazyIteratorList(AbstractLazySequence):
 # Trie Implementation
 ######################################################################
 class Trie(dict):
-    """A Trie implementation for strings"""
+    """为字符串实现一个 Trie 字典树。"""
 
     LEAF = True
 
     def __init__(self, strings=None):
-        """Builds a Trie object, which is built around a ``dict``
+        """初始化一个 ``Trie`` 实例对象，该实例是一个 ``dict`` 数据结构。
 
-        If ``strings`` is provided, it will add the ``strings``, which
-        consist of a ``list`` of ``strings``, to the Trie.
-        Otherwise, it'll construct an empty Trie.
+        如果 ``strings`` 参数提供了值的话，会把字符串进行列表处理后，
+        每一个字符作为字典键，字典值是一个字典。
+        值字典的键是``True``，值字典的值是``None``。
+        否则建立的是一个空字典形式的 Trie 对象。
 
-        :param strings: List of strings to insert into the trie
-            (Default is ``None``)
-        :type strings: list(str)
+        俗称刨根问题、追根溯源算法。阅读 `[字典树算法] <https://en.wikipedia.org/wiki/Trie>_`
+
+        :param strings: 字符串经过列表化后把最后一项插入到字典树节点上，默认值是``None``
+        :type strings: 要支持 ``list(str)`` 操作。
 
         """
         super(Trie, self).__init__()
@@ -637,10 +647,10 @@ class Trie(dict):
                 self.insert(string)
 
     def insert(self, string):
-        """Inserts ``string`` into the Trie
+        """把 ``string`` 参数值分解后每个字符插入到字典树节点上的方法。
 
-        :param string: String to insert into the trie
-        :type string: str
+        :param string: 要插入到字典树上的字符串。
+        :type string: ``str``
 
         :Example:
 
