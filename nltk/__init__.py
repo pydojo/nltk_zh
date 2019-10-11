@@ -7,9 +7,9 @@
 # For license information, see LICENSE.TXT
 
 """
-The Natural Language Toolkit (NLTK) is an open source Python library
-for Natural Language Processing.  A free online book is available.
-(If you use the library for academic research, please cite the book.)
+自然语言工具集 (NLTK) 是一个自然语言处理的开源 Python 库。
+有一本在线免费图书可以阅读。
+(如果你把这个库用在学校或研究中，请引用本书的如下信息：)
 
 Steven Bird, Ewan Klein, and Edward Loper (2009).
 Natural Language Processing with Python.  O'Reilly Media Inc.
@@ -30,9 +30,9 @@ try:
     with open(version_file, "r") as infile:
         __version__ = infile.read().strip()
 except NameError:
-    __version__ = "unknown (running code interactively?)"
+    __version__ = "未知版本（难道使用了互动方式运行代码？）"
 except IOError as ex:
-    __version__ = "unknown (%s)" % ex
+    __version__ = "位置版本（{0}）".format(ex)
 
 if __doc__ is not None:  # fix for the ``python -OO``
     __doc__ += "\n@version: " + __version__
@@ -40,7 +40,7 @@ if __doc__ is not None:  # fix for the ``python -OO``
 
 # Copyright notice
 __copyright__ = """\
-Copyright (C) 2001-2019 NLTK Project.
+Copyright (C) 2001-2020 NLTK Project.
 
 Distributed and Licensed under the Apache License, Version 2.0,
 which is included by reference.
@@ -50,7 +50,7 @@ __license__ = "Apache License, Version 2.0"
 # Description of the toolkit, keywords, and the project's primary URL.
 __longdescr__ = """\
 The Natural Language Toolkit (NLTK) is a Python package for
-natural language processing.  NLTK requires Python 2.6 or higher."""
+natural language processing.  NLTK requires Python 3.7 or higher."""
 __keywords__ = [
     "NLP",
     "CL",
@@ -75,15 +75,15 @@ __author_email__ = __maintainer_email__
 
 # "Trove" classifiers for Python Package Index.
 __classifiers__ = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 6 - Production/Developing",
     "Intended Audience :: Developers",
     "Intended Audience :: Education",
     "Intended Audience :: Information Technology",
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 2.6",
     "Programming Language :: Python :: 2.7",
+    "Programming Language :: Python :: 3.7",
     "Topic :: Scientific/Engineering",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: Scientific/Engineering :: Human Machine Interfaces",
@@ -109,13 +109,13 @@ import subprocess
 if not hasattr(subprocess, "PIPE"):
 
     def _fake_PIPE(*args, **kwargs):
-        raise NotImplementedError("subprocess.PIPE is not supported.")
+        raise NotImplementedError("不支持 subprocess.PIPE 用法。")
 
     subprocess.PIPE = _fake_PIPE
 if not hasattr(subprocess, "Popen"):
 
     def _fake_Popen(*args, **kwargs):
-        raise NotImplementedError("subprocess.Popen is not supported.")
+        raise NotImplementedError("不支持 subprocess.Popen 用法。")
 
     subprocess.Popen = _fake_Popen
 
