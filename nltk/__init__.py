@@ -32,7 +32,7 @@ try:
 except NameError:
     __version__ = "未知版本（难道使用了互动方式运行代码？）"
 except IOError as ex:
-    __version__ = "位置版本（{0}）".format(ex)
+    __version__ = "未知版本（{0}）".format(ex)
 
 if __doc__ is not None:  # fix for the ``python -OO``
     __doc__ += "\n@version: " + __version__
